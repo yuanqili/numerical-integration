@@ -47,16 +47,15 @@ for a, b in zip(divide_xs[:-1], divide_xs[1:]):
     fb = stats.norm.pdf(b, mu, sigma)
     fm = stats.norm.pdf(midpoint, mu, sigma)
 
-    match side:
-        case 'Left':
-            height = fa
-            area = width * fa
-        case 'Right':
-            height = fb
-            area = width * fb
-        case 'Midpoint':
-            height = fm
-            area = width * fm
+    if side == 'Left':
+        height = fa
+        area = width * fa
+    if side == 'Right':
+        height = fb
+        area = width * fb
+    if side == 'Midpoint':
+        height = fm
+        area = width * fm
 
     axes.plot([a, b], [height, height], color=color, lw=0.5)
     axes.fill_between([a, b], [0, 0], [height, height], color=color, alpha=0.2)
